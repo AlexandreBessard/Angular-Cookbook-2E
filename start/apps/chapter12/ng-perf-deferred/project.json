@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/chapter12/ng-perf-deferred",
         "index": "apps/chapter12/ng-perf-deferred/src/index.html",
         "main": "apps/chapter12/ng-perf-deferred/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/chapter12/ng-perf-deferred/tsconfig.app.json",
         "assets": [
           "apps/chapter12/ng-perf-deferred/src/favicon.ico",
@@ -48,7 +44,8 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "baseHref": "/Angular-Cookbook-2E/chapter12/ng-perf-deferred/start/"
         },
         "development": {
           "buildOptimizer": false,
@@ -65,10 +62,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "ng-perf-deferred:build:production"
+          "buildTarget": "ng-perf-deferred:build:production"
         },
         "development": {
-          "browserTarget": "ng-perf-deferred:build:development"
+          "buildTarget": "ng-perf-deferred:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -76,26 +73,16 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ng-perf-deferred:build"
+        "buildTarget": "ng-perf-deferred:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/chapter12/ng-perf-deferred/**/*.ts",
-          "apps/chapter12/ng-perf-deferred/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/chapter12/ng-perf-deferred/jest.config.ts",
         "passWithNoTests": true
